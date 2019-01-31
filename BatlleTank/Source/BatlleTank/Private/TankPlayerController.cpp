@@ -1,6 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "TankPlayerController.h"
+#include "Classes/Engine/World.h"
+#include "Runtime/Engine/Public/DrawDebugHelpers.h"
 
 // Sets default values
 ATankPlayerController::ATankPlayerController()
@@ -51,7 +53,7 @@ void ATankPlayerController::AimTowardsCrosshair()
 	FVector HitLocation; // OUT parameter
 	if (GetSightRayHitLocation(HitLocation)) {
 	
-		//UE_LOG(LogTemp, Warning, TEXT("Hitlocation: %s"), *HitLocation.ToString())
+		UE_LOG(LogTemp, Warning, TEXT("Hitlocation: %s"), *HitLocation.ToString())
 		// If it hits the landscape
 			// tell controlled tank to aim at this point
 	
@@ -72,7 +74,9 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector& HitLocation) const
 	
 	FVector LookDirection;
 	if (GetLookDirection(CrossHairScreenPos, LookDirection)) {
-		UE_LOG(LogTemp, Warning, TEXT("Crosshair worldlocation: %s"), *LookDirection.ToString())
+
+		// linetrace along that look direction and see what we 'hit'
+		GetLookVectorHitLocation(LookDirection, HitLocation);
 	}
 
 	// Linetrace through that world direction and see what we hit (take into account the range)
@@ -86,6 +90,26 @@ bool ATankPlayerController::GetLookDirection(FVector2D CrossHairScreenPos, FVect
 	return DeprojectScreenPositionToWorld(CrossHairScreenPos.X, CrossHairScreenPos.Y,
 											WorldLocation, LookDirection);
 	
+}
+
+// What in the word is our crosshair hitting
+bool ATankPlayerController::GetLookVectorHitLocation(FVector Lookdirection, FVector& HitLocation) const {
+
+	FHitResult HitResult;
+	auto StartLocation = PlayerCameraManager->GetCameraLocation();
+	auto EndLocation = StartLocation + (Lookdirection * LineTraceRange);
+
+	if (GetWorld()->LineTraceSingleByChannel(HitResult, StartLocation, 
+											EndLocation, ECollisionChannel::ECC_Visibility))
+	{
+		// set hitlocation
+		HitLocation = HitResult.Location;
+		
+		return true;
+	}
+	
+	HitLocation = FVector(0); // prevent return vector with nasty random numbers
+	return false;
 }
 
 

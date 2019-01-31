@@ -31,6 +31,10 @@ private:
 
 	UPROPERTY(EditAnyWhere)
 	float CrossHairY_ViewportDistribution = 0.333f;
+
+	// in KM
+	UPROPERTY(EditAnyWhere)
+	float LineTraceRange = 1000000.0;
 	
 	ATank* GetControlledTank() const;
 
@@ -42,5 +46,8 @@ private:
 
 	// Deproject the screen position to the world direction
 	bool GetLookDirection(FVector2D CrossHairScreenPos, FVector& LookDirection) const;
+
+	// What in the wordl is our crosshair hitting
+	bool GetLookVectorHitLocation(FVector LookDirection, FVector& HitLocation) const;
 	
 };
