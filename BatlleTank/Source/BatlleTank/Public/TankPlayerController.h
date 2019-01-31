@@ -18,19 +18,28 @@ class BATLLETANK_API ATankPlayerController : public APlayerController
 public:
 	// Sets default values for this pawn's properties
 	ATankPlayerController();
+
+	virtual void BeginPlay() override;
 	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 private:
-	ATank* GetControlledTank() const;
+	
+	UPROPERTY(EditAnyWhere)
+	float CrossHairX_ViewportDistribution = 0.5f;
 
-	virtual void BeginPlay() override;
+	UPROPERTY(EditAnyWhere)
+	float CrossHairY_ViewportDistribution = 0.333f;
+	
+	ATank* GetControlledTank() const;
 
 	// Move the barrel towards the crosshair
 	void AimTowardsCrosshair();
 
 	// return an OUT parameter and return true if hit is not sky.
 	bool GetSightRayHitLocation(FVector& Hitlocation) const;
+
+
 	
 };
