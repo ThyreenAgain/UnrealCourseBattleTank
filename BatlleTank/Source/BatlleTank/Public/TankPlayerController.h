@@ -40,6 +40,7 @@ private:
 	// return an OUT parameter and return true if hit is not sky.
 	bool GetSightRayHitLocation(FVector& Hitlocation) const;
 
-
+	// Deproject the screen position to the world direction
+	bool GetLookDirection(FVector2D CrossHairScreenPos, FVector& LookDirection) const;
 	
 };
