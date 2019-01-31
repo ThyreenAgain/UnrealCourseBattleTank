@@ -15,10 +15,11 @@ class BATLLETANK_API ATankAIController : public AAIController
 {
 	GENERATED_BODY()
 	
-public:	
-	ATank* getControlledTank() const;
-
+private:	
 	virtual void BeginPlay() override;
+
+	ATank* GetControlledTank() const;
+	ATank* GetPlayerTank() const;
 	
 	
 };
