@@ -56,7 +56,7 @@ void ATankPlayerController::AimTowardsCrosshair()
 		// If it hits the landscape
 
 			// tell controlled tank to aim at this point
-			//GetControlledTank()->AimAt(HitLocation);
+			GetControlledTank()->AimAt(HitLocation);
 	
 	}
 	
