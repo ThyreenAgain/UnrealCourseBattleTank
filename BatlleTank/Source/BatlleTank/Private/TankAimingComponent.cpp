@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "TankAimingComponent.h"
+#include "TankBarrel.h"
 #include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
 
 
@@ -14,7 +15,7 @@ UTankAimingComponent::UTankAimingComponent()
 	// ...
 }
 
-void UTankAimingComponent::setBarrelReference(UStaticMeshComponent * BarrelToSet)
+void UTankAimingComponent::setBarrelReference(UTankBarrel* BarrelToSet)
 {
 	Barrel = BarrelToSet;
 }
@@ -59,5 +60,6 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection) {
 
 	// Move the barrel the right amount this frame time
 	// Given a max eleveation speed and the frame time
+	Barrel->Elevate(5.);
 
 }
