@@ -46,11 +46,11 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 	FString TheFloatStr = FString::SanitizeFloat(Time);
 
 	if (bAimSolution == true) {
-		UE_LOG(LogTemp, Warning, TEXT("%s - Tank[%s] Aiming at %s"), *TheFloatStr, *TankName, *AimDirection.ToString())
+		//UE_LOG(LogTemp, Warning, TEXT("%s - Tank[%s] Aiming at %s"), *TheFloatStr, *TankName, *AimDirection.ToString())
 	}
 	else {
 		
-		UE_LOG(LogTemp, Warning, TEXT("%s - Tank[%s] Has no aiming solution"), *TheFloatStr, *TankName)
+		//UE_LOG(LogTemp, Warning, TEXT("%s - Tank[%s] Has no aiming solution"), *TheFloatStr, *TankName)
 	}
 	
 	MoveBarrelTowards(AimDirection);
@@ -58,6 +58,8 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 }
 
 void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection) {
+
+
 
 	// Workout difference between current and aim direction
 	auto BarrelRotator = Barrel->GetForwardVector().Rotation();
@@ -67,6 +69,6 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection) {
 
 	// Move the barrel the right amount this frame time
 	// Given a max eleveation speed and the frame time
-	Barrel->Elevate(5.);
+	Barrel->Elevate(DeltaRotator.Pitch);
 
 }
