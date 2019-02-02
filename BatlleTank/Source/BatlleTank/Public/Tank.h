@@ -21,16 +21,19 @@ public:
 	// Sets default values for this pawn's properties
 	ATank();
 
-	void AimAt(FVector HitLocation);
-
 	UFUNCTION(BlueprintCallable, Category = Setup)
 	void SetBarrelReference(UTankBarrel* BarrelToSet);
 
 	UFUNCTION(BlueprintCallable, Category = Setup)
 	void SetTurretReference(UTankTurret* TurretToSet);
 
+	UFUNCTION(BlueprintCallable)
+	void Fire();
+
 	UPROPERTY(EditAnyWhere, Category = Firing)
-		float LaunchSpeed = 40000.0; // starting value of 1000 m/s
+	float LaunchSpeed = 40000.0; // starting value of 1000 m/s
+
+	void AimAt(FVector HitLocation);
 
 protected:
 	// Called when the game starts or when spawned

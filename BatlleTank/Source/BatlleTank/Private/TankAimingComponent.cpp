@@ -48,10 +48,8 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 
 	// Calculate the out launch velocity
 	auto AimDirection = OutLaunchVelocity.GetSafeNormal();
-	auto TankName = GetOwner()->GetName();
-	auto Time = GetWorld()->GetTimeSeconds();
-
-	FString TheFloatStr = FString::SanitizeFloat(Time);
+	//auto TankName = GetOwner()->GetName();
+	//auto Time = GetWorld()->GetTimeSeconds();
 
 	if (bAimSolution == true) {
 		//UE_LOG(LogTemp, Warning, TEXT("%s - Tank[%s] Aiming at %s"), *TheFloatStr, *TankName, *AimDirection.ToString())
