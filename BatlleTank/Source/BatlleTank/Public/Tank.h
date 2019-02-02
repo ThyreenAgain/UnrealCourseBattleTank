@@ -32,7 +32,7 @@ public:
 	void Fire();
 
 	UPROPERTY(EditAnyWhere, Category = Firing)
-	float LaunchSpeed = 40000.0; // starting value of 1000 m/s
+	float LaunchSpeed = 4000.0; // starting value of 1000 m/s
 
 	UPROPERTY(EditAnyWhere, Category = Setup)
 	TSubclassOf<AProjectile> ProjectileBluePrint; 
@@ -48,5 +48,8 @@ protected:
 
 	UTankAimingComponent* TankAimingComponent = nullptr;
 	UTankBarrel* Barrel = nullptr;
+
+	float ReloadTimeInSeconds = 3.f;
+	double LastFireTime = 0;
 
 };
