@@ -9,6 +9,7 @@
 
 // Forward declarations
 class UTankBarrel;
+class UTankTurret;
 class UTankAimingComponent;
 
 UCLASS()
@@ -25,8 +26,11 @@ public:
 	UFUNCTION(BlueprintCallable, Category = Setup)
 	void SetBarrelReference(UTankBarrel* BarrelToSet);
 
+	UFUNCTION(BlueprintCallable, Category = Setup)
+	void SetTurretReference(UTankTurret* TurretToSet);
+
 	UPROPERTY(EditAnyWhere, Category = Firing)
-		float LaunchSpeed = 100000.0; // starting value of 1000 m/s
+		float LaunchSpeed = 40000.0; // starting value of 1000 m/s
 
 protected:
 	// Called when the game starts or when spawned
