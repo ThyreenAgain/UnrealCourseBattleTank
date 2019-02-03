@@ -40,7 +40,7 @@ void ATankAIController::Tick(float DeltaSeconds)
 		//GetControlledTank()->AimAt(GetPlayerTank()->GetActorLocation());
 
 		// fire if ready
-		GetControlledTank()->Fire();
+		//GetControlledTank()->Fire();
 	}
 }
 

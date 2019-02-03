@@ -57,7 +57,7 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 	}
 	else {
 		
-		UE_LOG(LogTemp, Warning, TEXT("%s - Tank[%s] Has no aiming solution"), *TheFloatStr, *TankName)
+		//UE_LOG(LogTemp, Warning, TEXT("%s - Tank[%s] Has no aiming solution"), *TheFloatStr, *TankName)
 	}
 	
 	MoveBarrelTowards(AimDirection);
